@@ -90,9 +90,11 @@ jobs:
             - name: Update for ${{ matrix.tag }}
               run: |
                   CONFIG_FILE=config.json
-                  jq --arg ver ${{ matrix.tag }} '.cardinal_version=$ver' $CONFIG_FILE > $CONFIG_FILE
+                  CONFIG_FILE_TMP=/tmp/config.json
+                  jq --arg ver ${{ matrix.tag }} '.cardinal_version=$ver' "$CONFIG_FILE" > "$CONFIG_FILE_TMP"
+                  mv "$CONFIG_FILE_TMP" "$CONFIG_FILE"
 
-                  echo "CONFIG: $(cat $CONFIG_FILE)"
+                  echo "CONFIG: $(cat "$CONFIG_FILE")"
                   chmod +x update.sh
                   ./update.sh
 
