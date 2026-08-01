@@ -1,9 +1,5 @@
 name: Automatic update cardinal version
 
-permissions:
-    contents: write
-    pull-requests: write
-
 on:
     workflow_dispatch: null
     schedule:
@@ -82,6 +78,9 @@ jobs:
             && needs.detect-new-tags.outputs.new_tags != ''
             && needs.detect-new-tags.outputs.new_tags != '[]'
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            pull-requests: write
         strategy:
             matrix:
                 tag: "${{ fromJson(needs.detect-new-tags.outputs.new_tags) }}"
