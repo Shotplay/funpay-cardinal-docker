@@ -11,7 +11,7 @@ FROM alpine/git:2.54.0 AS repository
 
 WORKDIR /opt/cardinal
 
-ENV CARDINAL_VERSION=v0.1.17.8 \
+ENV CARDINAL_VERSION=v0.1.17.9 \
     CARDINAL_REPOSITORY=https://github.com/sidor0912/FunPayCardinal.git
 
 RUN git clone -b "$CARDINAL_VERSION" --depth 1 $CARDINAL_REPOSITORY /opt/cardinal \
