@@ -1,5 +1,5 @@
 {
-  "cardinal_version": "v0.1.17.3",
+  "cardinal_version": "v0.1.17.4",
   "targets": {
     "alpine": {
       "image": "python:3.11-alpine"
