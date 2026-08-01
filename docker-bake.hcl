@@ -29,14 +29,14 @@ target "cardinal" {
     }
     context = "./${base}"
     dockerfile = "Dockerfile"
-    tags = [
+    tags = compact([
         equal("slim-trixie", "${base}") ? "docker.io/shotplay/fp-cardinal:latest" : "",
         "docker.io/shotplay/fp-cardinal:latest-${base}",
         "docker.io/shotplay/fp-cardinal:${VERSION}-${base}",
         "docker.io/shotplay/fp-cardinal:${MAJOR}.${MINOR}.${PATCH}-${base}",
         "docker.io/shotplay/fp-cardinal:${MAJOR}.${MINOR}-${base}",
         "docker.io/shotplay/fp-cardinal:${MAJOR}-${base}",
-    ]
+    ])
     attest = [
         {
             type = "provenance"
