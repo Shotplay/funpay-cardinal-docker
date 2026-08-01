@@ -1,0 +1,14 @@
+{
+    "cardinal_version": "v0.1.17.2",
+    "targets": {
+        "alpine": {
+            "image": "python:3.11-alpine"
+        },
+        "slim-bookworm": {
+            "image": "python:3.11-slim-bookworm"
+        },
+        "slim-trixie": {
+            "image": "python:3.11-slim-trixie"
+        }
+    }
+}
