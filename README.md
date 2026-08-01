@@ -1,6 +1,6 @@
 # Funpay Cardinal Docker
 
-[English](./README.md) | [Русский](./README.ru.md)
+[English][readme] | [Русский][readme-ru]
 
 Docker images for [FunPayCardinal][cardinal] bot
 
@@ -65,15 +65,20 @@ docker logs funpay-cardinal
 
 ## Authors
 
-[ShotplayMeow](https://github.com/Shotplay)
+[ShotplayMeow][shotplaymeow]
 
 ## License
 
-This project is licensed under the BSD-3-Clause License - see the [LICENSE](./LICENSE) file for details
+This project is licensed under the BSD-3-Clause License - see the [LICENSE][license] file for details
 
 ## Acknowledgments
 
-Special thanks to [sidor0912](https://github.com/sidor0912) for the original bot.
+Special thanks to [sidor0912][sidor0912] for the original bot.
 
+[readme]: ./README.md
+[readme-ru]: ./README.ru.md
+[license]: ./LICENSE
 [cardinal]: https://github.com/sidor0912/FunPayCardinal
+[sidor0912]: https://github.com/sidor0912
+[shotplaymeow]: https://github.com/Shotplay
 [compose]: ./docker-compose.yml
