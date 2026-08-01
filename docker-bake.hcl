@@ -3,7 +3,7 @@ group "default" {
 }
 
 variable "VERSION" {
-    default = "0.1.17.8"
+    default = ""
 }
 
 variable "MAJOR" {
@@ -25,7 +25,7 @@ variable "BUILD" {
 target "cardinal" {
     name = "cardinal-${base}"
     matrix = {
-        base = ["alpine","slim-bookworm","slim-trixie"]
+        base = 
     }
     context = "./${base}"
     dockerfile = "Dockerfile"
