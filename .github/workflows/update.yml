@@ -89,8 +89,8 @@ jobs:
 
             - name: Update for ${{ matrix.tag }}
               run: |
-                  CONFIG_FILE=config.json
-                  CONFIG_FILE_TMP=/tmp/config.json
+                  CONFIG_FILE="config.json"
+                  CONFIG_FILE_TMP="/tmp/config.json"
                   jq --arg ver ${{ matrix.tag }} '.cardinal_version=$ver' "$CONFIG_FILE" > "$CONFIG_FILE_TMP"
                   mv "$CONFIG_FILE_TMP" "$CONFIG_FILE"
 
