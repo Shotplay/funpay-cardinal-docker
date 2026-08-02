@@ -7,7 +7,7 @@ Docker images for [FunPayCardinal][cardinal] bot
 ## Description
 
 Auto-generated Docker images for containerizing the [FunPayCardinal][cardinal] bot.
-Images published on Docker Hub: https://hub.docker.com/shotplay/fp-cardinal.
+Images published on Docker Hub: https://hub.docker.com/r/shotplay/fp-cardinal.
 
 ## Getting started
 

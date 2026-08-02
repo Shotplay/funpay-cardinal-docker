@@ -6,7 +6,8 @@
 
 ## Описание
 
-Авто-генерируемые образы Docker для контейнеризации [FunPayCardinal][cardinal] бота. Образы публикуются на Docker Hub: https://hub.docker.com/shotplay/fp-cardinal.
+Авто-генерируемые образы Docker для контейнеризации [FunPayCardinal][cardinal] бота. 
+Образы публикуются на Docker Hub: https://hub.docker.com/r/shotplay/fp-cardinal.
 
 ## Начало
 
