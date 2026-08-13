@@ -41,7 +41,7 @@ jobs:
               run: |
                   mkdir -p .cache/tags
 
-                  PROCESSED_FILE=".cache/tags/processed-${{ github.run_id }}.txt"
+                  PROCESSED_FILE=".cache/tags/processed-${{ github.run_id }}"
                   PROCESSED_FILE_TMP="/tmp/processed.txt"
                   TAGS_JSON_FILE="/tmp/tags.json"
                   TAGS_FILE="/tmp/tags.txt"
