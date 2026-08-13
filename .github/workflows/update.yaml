@@ -17,6 +17,10 @@ jobs:
     env:
       TAGS_COUNT: 10
     steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
       - uses: NixOS/nix-installer-action@v1
       - uses: DeterminateSystems/magic-nix-cache-action@v14
 
