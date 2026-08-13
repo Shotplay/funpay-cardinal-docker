@@ -1,6 +1,7 @@
 {{ $target := (ds "target").name -}}
-{{ $cardinal_version := strings.ReplaceAll "v" "" (ds "cardinal").version -}}
-{{ $cardinal_version_parts := strings.Split "." $cardinal_version -}}
+{{ $cardinal_version := (ds "cardinal").version -}}
+{{ $cardinal_version_clean := strings.ReplaceAll "v" "" $cardinal_version -}}
+{{ $cardinal_version_parts := strings.Split "." $cardinal_version_clean -}}
 {{ $cardinal_version_major := coll.Index 0 $cardinal_version_parts -}}
 {{ $cardinal_version_minor := coll.Index 1 $cardinal_version_parts -}}
 {{ $cardinal_version_patch := coll.Index 2 $cardinal_version_parts -}}
