@@ -19,9 +19,6 @@ target "cardinal-{{ $target }}" {
   context = "./contexts/{{ $target }}"
   dockerfile = "Dockerfile"
   args = {
-    {{ $final_image_repo := (ds "target").image.repo -}}
-    {{ $final_image_version := (ds "target").image.version -}} 
-
     CARDINAL_VERSION = "{{ $cardinal_version }}"
     CARDINAL_REPOSITORY = "{{ (ds "cardinal").repo }}"
     CARDINAL_CLEANUP = "{{ conv.Join (ds "cardinal").cleanup.paths " " }}"
