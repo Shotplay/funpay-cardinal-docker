@@ -3,7 +3,7 @@ group "default" {
 }
 
 variable "VERSION" {
-    default = "0.1.17.11"
+    default = "0.1.17.5"
 }
 
 variable "MAJOR" {
