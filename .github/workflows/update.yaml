@@ -59,11 +59,11 @@ jobs:
             TAGS=$(echo "$GET_TAGS")
           fi
 
-          echo "COMPARED TAGS: $TAGS"
           if [[ -z $TAGS ]]; then
             echo "New tags not found"
             exit 0
           fi
+          echo "COMPARED TAGS: $TAGS"
 
           echo "$TAGS" | head -n 10 > "$PROCESSED_TAGS_FILE"
 
