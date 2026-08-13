@@ -13,7 +13,7 @@ jobs:
   detect-new-tags:
     runs-on: ubuntu-latest
     outputs:
-      new_tags: ""
+      new_tags: ${{ steps.compare_tags.outputs.new_tags }}
     env:
       TAGS_COUNT: 10
     steps:
@@ -44,6 +44,7 @@ jobs:
           key: processed_tags
 
       - name: Compare tags
+        id: compare_tags
         run: |
           mkdir -p .cache/tags
 
