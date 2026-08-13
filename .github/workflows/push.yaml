@@ -29,8 +29,8 @@ jobs:
       - name: Build and push
         uses: docker/bake-action@v7
         with:
-          source: ./targets
-          files: ./*.hcl
+          source: ./targets/context
+          files: ./targets/*.hcl
           push: true
           set: |
             *.cache-from=type=gha
