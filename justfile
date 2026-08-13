@@ -1,8 +1,17 @@
-update-version version:
-    jq --arg ver "{{ version }}" -r '.cardinal_version=$ver' config.json > /tmp/config.json; \
-    mv /tmp/config.json config.json
+set-cardinal-version version:
+    sed -i 's/^version: .*/version: {{ version }}/' configs/cardinal.yaml
 
-build:
-    chmod +x update.sh; \
-    ./update.sh; \
-    docker buldx bake -f docker-bake.hcl
+update-target target:
+    gomplate \
+      -d target="configs/{{ target }}.yaml" \
+      -f docker-bake.hcl.tmpl \
+      -o "targets/{{ target }}.hcl"
+
+update-all-targets:
+  just update-target "alpine"
+  just update-target "slim-bookworm"
+  just update-target "slim-trixie"
+
+update-to version:
+  just set-cardinal-version "{{ version }}"
+  just update-all-targets

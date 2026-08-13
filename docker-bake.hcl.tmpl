@@ -1,0 +1,56 @@
+{{ $target := (ds "target").name -}}
+{{ $cardinal_version := strings.ReplaceAll "v" "" (ds "cardinal").version -}}
+{{ $cardinal_version_parts := strings.Split "." $cardinal_version -}}
+{{ $cardinal_version_major := coll.Index 0 $cardinal_version_parts -}}
+{{ $cardinal_version_minor := coll.Index 1 $cardinal_version_parts -}}
+{{ $cardinal_version_patch := coll.Index 2 $cardinal_version_parts -}}
+# =========================================================
+# THIS FILE IS GENERATED VIA "just update-target {{ $target }}".
+# 
+# PLEASE DO NOT EDIT IT MANUALLY.
+# =========================================================
+
+group "default" {
+  targets = ["cardinal-{{ $target }}"]
+}
+
+target "cardinal-{{ $target }}" {
+  context = "./context"
+  dockerfile = "Dockerfile"
+  args = {
+    {{ $final_image_repo := (ds "target").image.repo -}}
+    {{ $final_image_version := (ds "target").image.version -}} 
+
+    CARDINAL_VERSION = "{{ $cardinal_version }}"
+    CARDINAL_REPOSITORY = "{{ (ds "cardinal").repo }}"
+    CARDINAL_CLEANUP = "{{ conv.Join (ds "cardinal").cleanup.paths " " }}"
+    GIT_IMAGE = "{{ (ds "config").images.git.repo }}:{{ (ds "config").images.git.version }}"
+    {{ if coll.Has (ds "target") "builder" -}}
+    BUILDER_IMAGE = "{{ (ds "target").builder.repo }}:{{ (ds "target").builder.version }}"
+    {{- else -}}
+    BUILDER_IMAGE = "{{ $final_image_repo }}:{{ $final_image_version }}"
+    {{- end }}
+    FINAL_IMAGE = "{{ $final_image_repo }}:{{ $final_image_version }}"
+  }
+  tags = [
+    {{ if coll.Has (ds "target") "tags" -}}
+    {{ range (ds "target").tags -}}
+    "{{ . }}",
+    {{- end }}
+    {{- end -}}
+    "docker.io/shotplay/fp-cardinal:latest-{{ $target }}",
+    "docker.io/shotplay/fp-cardinal:{{ $cardinal_version }}-{{ $target }}",
+    "docker.io/shotplay/fp-cardinal:{{ $cardinal_version_major }}.{{ $cardinal_version_minor }}.{{ $cardinal_version_patch }}-{{ $target }}",
+    "docker.io/shotplay/fp-cardinal:{{ $cardinal_version_major }}.{{ $cardinal_version_minor }}-{{ $target }}",
+    "docker.io/shotplay/fp-cardinal:{{ $cardinal_version_major }}-{{ $target }}",
+  ]
+  attest = [
+    {
+      type = "provenance"
+      mode = "max"
+    },
+    {
+      type = "sbom"
+    }
+  ]
+}
