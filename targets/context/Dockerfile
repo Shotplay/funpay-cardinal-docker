@@ -48,7 +48,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
   PATH="/opt/venv/bin:${PATH}"
 
 RUN addgroup --group 65532 nonroot \
-  adduser --uid 65532 --group 65532 nonroot
+  && adduser --uid 65532 --group 65532 nonroot
 
 COPY --from=repository --chown=nonroot:nonroot /opt/cardinal /opt/cardinal/
 
