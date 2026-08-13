@@ -1,0 +1,14 @@
+version: v0.1.17.12
+repo: https://github.com/sidor0912/FunPayCardinal.git
+
+cleanup:
+  paths:
+    - .git
+    - .github
+    - .gitignore
+    - README.md
+    - Cardinal.ico
+    - install-fpc.sh
+    - FunPayCardinal@.service
+    - Start.bat
+    - Setup.bat

@@ -21,6 +21,7 @@
             nixfmt
 
             just
+            gomplate
           ];
         };
       }
