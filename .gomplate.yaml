@@ -3,3 +3,9 @@ datasources:
     url: configs/config.yaml
   cardinal:
     url: configs/cardinal.yaml
+
+context:
+  .:
+    url: configs/config.yaml
+  cardinal:
+    url: configs/cardinal.yaml

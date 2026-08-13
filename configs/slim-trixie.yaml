@@ -1,5 +1,8 @@
 name: slim-trixie
 
+os:
+  type: debian
+
 image:
   repo: docker.io/python
   version: 3.11-slim-trixie

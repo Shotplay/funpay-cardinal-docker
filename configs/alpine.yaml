@@ -1,9 +1,8 @@
 name: alpine
 
+os:
+  type: alpine
+
 image:
   repo: docker.io/python
   version: 3.11-alpine
-
-# builder:
-#   repo: docker.io/python
-#   version: 3.11-alpine

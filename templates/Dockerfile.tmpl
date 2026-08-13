@@ -1,0 +1,75 @@
+{{- $os := (ds "target").os -}}
+{{- $user := (ds "config").user -}}
+{{- $git_image := (ds "config").images.git -}}
+{{- $builder_image := (ds "target").image -}}
+{{- $final_image := $builder_image -}}
+{{- $common_env := `ENV PYTHONDONTWRITEBYTECODE=1 \
+  PYTHONUNBUFFERED=1 \
+  PIP_NO_CACHE_DIR=1 \
+  PATH="/opt/venv/bin:${PATH}"` -}}
+# =========================================================
+# Stage 1: Install repository
+# =========================================================
+FROM {{ $git_image.repo }}:{{ $git_image.version }} AS repository
+
+WORKDIR /opt/cardinal
+
+ARG CARDINAL_VERSION
+ARG CARDINAL_REPOSITORY
+ARG CARDINAL_CLEANUP=".git"
+
+RUN git clone -b "${CARDINAL_VERSION}" --depth 1 ${CARDINAL_REPOSITORY} /opt/cardinal \
+  && rm -rf ${CARDINAL_CLEANUP}
+
+# =========================================================
+# Stage 2: Build
+# =========================================================
+FROM {{ $builder_image.repo }}:{{ $builder_image.version }} AS builder
+
+WORKDIR /opt/cardinal
+
+COPY --from=repository /opt/cardinal/requirements.txt /opt/cardinal/requirements.txt
+
+RUN python -m venv --copies /opt/venv
+
+{{ $common_env }}
+
+RUN pip install -r requirements.txt
+
+# =========================================================
+# Stage 3: Final
+# ========================================================= 
+FROM {{ $final_image.repo }}:{{ $final_image.version }}
+
+WORKDIR /opt/cardinal
+
+{{ $common_env }}
+
+{{ if eq $os.type "debian" }}
+RUN addgroup --gid {{ $user.gid }} {{ $user.group }} \
+  && adduser \
+    --home /opt/cardinal \
+    --disabled-password \
+    --gecos "" \
+    --uid {{ $user.uid }} \
+    --gid {{ $user.gid }} \
+    {{ $user.name }}
+{{ else if eq $os.type "alpine" }}
+RUN addgroup -g {{ $user.gid }} {{ $user.group }} \
+  && adduser \
+    -h /opt/cardinal \
+    -D \
+    -g "" \
+    -u {{ $user.uid }} \
+    -G {{ $user.group }} \
+    {{ $user.name }}
+{{ else }}
+{{ test.Fail "unknown os type" }}
+{{ end }}
+
+COPY --from=repository --chown={{ $user.name }}:{{ $user.group }} /opt/cardinal /opt/cardinal/
+COPY --from=builder --chown={{ $user.name }}:{{ $user.group }} /opt/venv /opt/venv
+
+USER {{ $user.name }}:{{ $user.group }}
+ENTRYPOINT ["/opt/venv/bin/python3" ]
+CMD [ "main.py" ]
