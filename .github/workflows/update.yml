@@ -50,6 +50,7 @@ jobs:
                   cat "$TAGS_JSON_FILE" | jq -r '.[].name' > "$TAGS_FILE"
 
                   echo "TAGS: $(cat "$TAGS_FILE")"
+                  echo "PROCESSED: $(cat "$PROCESSED_FILE")"
 
                   if [[ -s $PROCESSED_FILE ]]; then
                     TAGS=$(cat "$TAGS_FILE" | grep -v -F -f $PROCESSED_FILE)
