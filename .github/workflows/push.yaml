@@ -31,9 +31,9 @@ jobs:
         with:
           source: ./targets
           files: |
-            ./targets/alpine.hcl
-            ./targets/slim-bookworm.hcl
-            ./targets/slim-trixie.hcl
+            ./alpine.hcl
+            ./slim-bookworm.hcl
+            ./slim-trixie.hcl
           push: true
           set: |
             *.cache-from=type=gha
