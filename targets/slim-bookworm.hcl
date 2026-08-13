@@ -9,7 +9,7 @@ group "default" {
 }
 
 target "cardinal-slim-bookworm" {
-  context = "contexts/slim-bookworm"
+  context = "./contexts/slim-bookworm"
   dockerfile = "Dockerfile"
   args = {
     CARDINAL_VERSION = "v0.1.17.12"

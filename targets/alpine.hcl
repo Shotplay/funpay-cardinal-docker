@@ -9,7 +9,7 @@ group "default" {
 }
 
 target "cardinal-alpine" {
-  context = "contexts/alpine"
+  context = "./contexts/alpine"
   dockerfile = "Dockerfile"
   args = {
     CARDINAL_VERSION = "v0.1.17.12"

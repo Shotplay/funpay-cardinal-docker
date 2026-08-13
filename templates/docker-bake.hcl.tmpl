@@ -28,7 +28,7 @@ target "cardinal-{{ $target }}" {
     {{ range (ds "target").tags -}}
     "{{ . }}",
     {{- end }}
-    {{- end -}}
+    {{ end -}}
     "docker.io/shotplay/fp-cardinal:latest-{{ $target }}",
     "docker.io/shotplay/fp-cardinal:{{ $cardinal_version }}-{{ $target }}",
     "docker.io/shotplay/fp-cardinal:{{ $cardinal_version_major }}.{{ $cardinal_version_minor }}.{{ $cardinal_version_patch }}-{{ $target }}",

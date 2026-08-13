@@ -9,7 +9,7 @@ group "default" {
 }
 
 target "cardinal-slim-trixie" {
-  context = "contexts/slim-trixie"
+  context = "./contexts/slim-trixie"
   dockerfile = "Dockerfile"
   args = {
     CARDINAL_VERSION = "v0.1.17.12"
@@ -17,7 +17,8 @@ target "cardinal-slim-trixie" {
     CARDINAL_CLEANUP = ".git .github .gitignore README.md Cardinal.ico install-fpc.sh FunPayCardinal@.service Start.bat Setup.bat"
   }
   tags = [
-    "docker.io/shotplay/fp-cardinal:latest","docker.io/shotplay/fp-cardinal:latest-slim-trixie",
+    "docker.io/shotplay/fp-cardinal:latest",
+    "docker.io/shotplay/fp-cardinal:latest-slim-trixie",
     "docker.io/shotplay/fp-cardinal:v0.1.17.12-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0.1.17-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0.1-slim-trixie",
