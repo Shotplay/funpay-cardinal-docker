@@ -1,11 +1,5 @@
-datasources:
-  config:
-    url: configs/config.yaml
-  cardinal:
-    url: configs/cardinal.yaml
-
 context:
-  .:
+  config:
     url: configs/config.yaml
   cardinal:
     url: configs/cardinal.yaml

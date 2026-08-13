@@ -1,7 +1,7 @@
-{{- $os := (ds "target").os -}}
-{{- $user := (ds "config").user -}}
-{{- $git_image := (ds "config").images.git -}}
-{{- $builder_image := (ds "target").image -}}
+{{- $os := .target.os -}}
+{{- $user := .config.user -}}
+{{- $git_image := .config.images.git -}}
+{{- $builder_image := .target.image -}}
 {{- $final_image := $builder_image -}}
 {{- $common_env := `ENV PYTHONDONTWRITEBYTECODE=1 \
   PYTHONUNBUFFERED=1 \
