@@ -11,7 +11,7 @@ FROM alpine/git:2.54.0 AS repository
 
 WORKDIR /opt/cardinal
 
-ENV CARDINAL_VERSION=v0.1.17.11 \
+ENV CARDINAL_VERSION=v0.1.17.12 \
     CARDINAL_REPOSITORY=https://github.com/sidor0912/FunPayCardinal.git
 
 RUN git clone -b "$CARDINAL_VERSION" --depth 1 $CARDINAL_REPOSITORY /opt/cardinal \
@@ -49,11 +49,10 @@ WORKDIR /opt/cardinal
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    LD_LIBRARY_PATH="/usr/local/lib:/usr/lib/x86_64-linux-gnu" \
     PATH="/opt/venv/bin:$PATH"
 
 COPY --from=builder --chown=nonroot:nonroot /opt/venv /opt/venv
 COPY --from=builder --chown=nonroot:nonroot /opt/cardinal/ /opt/cardinal/
 
-ENTRYPOINT ["/opt/venv/bin/python" ]
+ENTRYPOINT ["/opt/venv/bin/python3" ]
 CMD [ "main.py" ]
