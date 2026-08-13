@@ -20,6 +20,8 @@
           buildInputs = with pkgs; [
             nixfmt
 
+            jq
+            
             just
             gomplate
           ];

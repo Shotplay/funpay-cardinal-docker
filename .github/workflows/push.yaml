@@ -1,0 +1,33 @@
+name: Docker image push
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  push:
+    if: |
+      github.event.pull_request.merged == true || 
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: shotplay
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+      
+      - name: Build and push
+        uses: docker/bake-action@v7
+        with:
+          source: ./targets
+          files: ./*.hcl
+          push: true
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max

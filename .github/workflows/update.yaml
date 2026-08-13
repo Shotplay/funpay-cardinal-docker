@@ -1,0 +1,102 @@
+name: Automatic update cardinal version
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+defaults:
+  run:
+    shell: nix develop --fallback --command bash -e {0}
+
+jobs:
+  detect-new-tags:
+    runs-on: ubuntu-latest
+    outputs:
+      new_tags: ""
+    env:
+      TAGS_COUNT: 10
+    steps:
+      - uses: NixOS/nix-installer-action@v1
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
+
+      - name: Get tags
+        id: get_tags
+        run: |
+          TAGS=$(curl https://api.github.com/repos/sidor0912/FunPayCardinal/tags?per_page=$TAGS_COUNT)
+          NAMES=$(jq -r '.[].name' <<< "$TAGS")
+
+          echo "TAGS_RAW: $TAGS"
+          echo "TAGS_NAMES: $NAMES"
+
+          echo "tags<<EOF" >> $GITHUB_OUTPUT
+          echo "$NAMES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Restore processed tags
+        uses: actions/cache@v5
+        with:
+          path: .cache/tags
+          key: processed_tags
+
+      - name: Compare tags
+        run: |
+          mkdir -p .cache/tags
+
+          PROCESSED_TAGS_FILE=".cache/tags/processed_tags"
+          GET_TAGS="${{ steps.get_tags.outputs.tags }}"
+
+          echo "GET_TAGS: $GET_TAGS"
+
+          if [[ -s $PROCESSED_TAGS_FILE ]]; then
+            TAGS=$(echo "$GET_TAGS" | grep -v -F -f "$PROCESSED_TAGS_FILE")
+          else
+            touch $PROCESSED_TAGS_FILE
+            TAGS=$(echo "$GET_TAGS")
+          fi
+
+          echo "COMPARED TAGS: $TAGS"
+          if [[ -z $TAGS ]]; then
+            echo "New tags not found"
+            exit 0
+          fi
+
+          echo "$TAGS" | head -n 10 > "$PROCESSED_TAGS_FILE"
+
+          JSON_TAGS=$(echo "$TAGS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
+          echo "JSON_TAGS: $JSON_TAGS"
+          echo "new_tags=$JSON_TAGS" >> $GITHUB_OUTPUT
+
+  update:
+    needs: detect-new-tags
+    if: |
+      needs.detect-new-tags.result == 'success' &&
+      needs.detect-new-tags.outputs.new_tags != '' &&
+      needs.detect-new-tags.outputs.new_tags != '[]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    strategy:
+      matrix:
+        tag: "${{ fromJson(needs.detect-new-tags.outputs.new_tags) }}"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - uses: NixOS/nix-installer-action@v1
+      - uses: DeterminateSystems/magic-nix-cache-action@v14
+
+      - name: Update to ${{ matrix.tag }}
+        run: just update-to ${{ matrix.tag }}
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "ci(update): automatic update to ${{ matrix.tag }}"
+          title: "ci(update): automatic update to ${{ matrix.tag }}"
+          body: "This PR is created automatically by github actions workflow"
+          branch: auto-update-${{ matrix.tag }}
+          base: main
+          sign-commits: true
