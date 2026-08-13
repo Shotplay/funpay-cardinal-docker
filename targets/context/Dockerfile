@@ -47,8 +47,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
   PIP_NO_CACHE_DIR=1 \
   PATH="/opt/venv/bin:${PATH}"
 
-RUN addgroup --group 65532 nonroot \
-  && adduser --uid 65532 --group 65532 nonroot
+RUN addgroup --group 65532 nonroot 2> /dev/null \
+  && adduser --uid 65532 --group nonroot nonroot 2> /dev/null
 
 COPY --from=repository --chown=nonroot:nonroot /opt/cardinal /opt/cardinal/
 
