@@ -22,7 +22,6 @@ jobs:
           fetch-depth: 1
 
       - uses: NixOS/nix-installer-action@v1
-      - uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - name: Get tags
         id: get_tags
@@ -54,7 +53,7 @@ jobs:
           echo "GET_TAGS: $GET_TAGS"
 
           if [[ -s $PROCESSED_TAGS_FILE ]]; then
-            TAGS=$(echo "$GET_TAGS" | grep -v -F -f "$PROCESSED_TAGS_FILE")
+            TAGS=$((echo "$GET_TAGS" | grep -v -F -f "$PROCESSED_TAGS_FILE") || echo "")
           else
             touch $PROCESSED_TAGS_FILE
             TAGS=$(echo "$GET_TAGS")
@@ -91,7 +90,6 @@ jobs:
           fetch-depth: 1
 
       - uses: NixOS/nix-installer-action@v1
-      - uses: DeterminateSystems/magic-nix-cache-action@v14
 
       - name: Update to ${{ matrix.tag }}
         run: just update-to ${{ matrix.tag }}
