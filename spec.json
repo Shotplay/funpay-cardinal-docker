@@ -1,0 +1,214 @@
+{
+  "dirs": {
+    "cardinal": "/cardinal",
+    "venv": "/venv"
+  },
+  "git": {
+    "clone": {
+      "depth": 1
+    },
+    "cleanup": {
+      "paths": [
+        ".git",
+        ".github",
+        ".gitignore",
+        "README.md",
+        "Cardinal.ico",
+        "install-fpc.sh",
+        "Dockerfile*",
+        "docker-compose*.yml",
+        "FunPayCardinal@.service",
+        "*.bat"
+      ]
+    },
+    "image": {
+      "repo": "docker.io/alpine/git",
+      "version": "2.54.0"
+    }
+  },
+  "cardinal": {
+    "version": "0.1.17.13",
+    "source": {
+      "github": {
+        "owner": "sidor0912",
+        "repo": "FunPayCardinal",
+        "rev": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
+      }
+    }
+  },
+  "user": {
+    "name": "nonroot",
+    "group": "nonroot",
+    "uid": 65532,
+    "gid": 65532
+  },
+  "build": {
+    "env": {
+      "PIP_NO_CACHE_DIR": 1,
+      "PYTHONDONTWRITEBYTECODE": 1,
+      "PATH": "/venv/bin:${PATH}"
+    },
+    "glibc": {
+      "platform": {
+        "os": "debian"
+      },
+      "image": {
+        "repo": "docker.io/python",
+        "version": "3.11-bookworm"
+      }
+    },
+    "musl": {
+      "platform": {
+        "os": "alpine"
+      },
+      "image": {
+        "repo": "docker.io/python",
+        "version": "3.11-alpine"
+      }
+    }
+  },
+  "final": {
+    "alpine": {
+      "from": "musl",
+      "create_user": true,
+      "include": [],
+      "labels": {
+        "org.opencontainers.image.authors": "shotplaymeow",
+        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
+        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
+        "org.opencontainers.image.version": "0.1.17.13",
+        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
+        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
+        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
+        "org.opencontainers.image.base.name": "docker.io/python:3.11-alpine"
+      },
+      "image": {
+        "repo": "docker.io/python",
+        "version": "3.11-alpine"
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": 1,
+        "PIP_NO_CACHE_DIR": 1,
+        "PYTHONUNBUFFERED": 1,
+        "PATH": "/venv/bin:${PATH}"
+      },
+      "entrypoint": [
+        "python3"
+      ],
+      "cmd": [
+        "main.py"
+      ]
+    },
+    "slim-bookworm": {
+      "from": "glibc",
+      "create_user": true,
+      "include": [],
+      "labels": {
+        "org.opencontainers.image.authors": "shotplaymeow",
+        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
+        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
+        "org.opencontainers.image.version": "0.1.17.13",
+        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
+        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
+        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
+        "org.opencontainers.image.base.name": "docker.io/python:3.11-slim-bookworm"
+      },
+      "image": {
+        "repo": "docker.io/python",
+        "version": "3.11-slim-bookworm"
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": 1,
+        "PIP_NO_CACHE_DIR": 1,
+        "PYTHONUNBUFFERED": 1,
+        "PATH": "/venv/bin:${PATH}"
+      },
+      "entrypoint": [
+        "python3"
+      ],
+      "cmd": [
+        "main.py"
+      ]
+    },
+    "slim-trixie": {
+      "from": "glibc",
+      "create_user": true,
+      "include": [],
+      "labels": {
+        "org.opencontainers.image.authors": "shotplaymeow",
+        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
+        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
+        "org.opencontainers.image.version": "0.1.17.13",
+        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
+        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
+        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
+        "org.opencontainers.image.base.name": "docker.io/python:3.11-slim-trixie"
+      },
+      "image": {
+        "repo": "docker.io/python",
+        "version": "3.11-slim-trixie"
+      },
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": 1,
+        "PIP_NO_CACHE_DIR": 1,
+        "PYTHONUNBUFFERED": 1,
+        "PATH": "/venv/bin:${PATH}"
+      },
+      "entrypoint": [
+        "python3"
+      ],
+      "cmd": [
+        "main.py"
+      ]
+    },
+    "distroless": {
+      "from": "glibc",
+      "create_user": true,
+      "include": [
+        {
+          "from": "build",
+          "dest": "/usr/local/lib/",
+          "srcs": [
+            "/usr/local/lib/libpython3.11.so",
+            "/usr/local/lib/libpython3.11.so.1.0",
+            "/usr/local/lib/libpython3.so"
+          ]
+        },
+        {
+          "from": "build",
+          "dest": "/usr/local/lib/python3.11/",
+          "srcs": [
+            "/usr/local/lib/python3.11/"
+          ]
+        }
+      ],
+      "labels": {
+        "org.opencontainers.image.authors": "shotplaymeow",
+        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
+        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
+        "org.opencontainers.image.version": "0.1.17.13",
+        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
+        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
+        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
+        "org.opencontainers.image.base.name": "gcr.io/distroless/cc-debian13:latest"
+      },
+      "image": {
+        "repo": "gcr.io/distroless/cc-debian13",
+        "version": "latest"
+      },
+      "env": {
+        "LD_LIBRARY_PATH": "/usr/local/lib:/usr/lib:/lib",
+        "PYTHONDONTWRITEBYTECODE": 1,
+        "PIP_NO_CACHE_DIR": 1,
+        "PYTHONUNBUFFERED": 1,
+        "PATH": "/venv/bin:${PATH}"
+      },
+      "entrypoint": [
+        "python3"
+      ],
+      "cmd": [
+        "main.py"
+      ]
+    }
+  }
+}
