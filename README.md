@@ -25,7 +25,7 @@ Images published on Docker Hub: https://hub.docker.com/r/shotplay/fp-cardinal.
 **1. Interactive setup (creates configs)**:
 ```bash
 $ docker run --rm -it --name funpay-cardinal-init \
-    -v /some/configs:/opt/cardinal/configs \
+    -v ./configs:/opt/cardinal/configs \
     shotplay/fp-cardinal 
 ```
 
