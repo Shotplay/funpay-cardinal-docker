@@ -1,0 +1,12 @@
+{{- define "labels" -}}
+{{- if .labels -}}
+LABEL \
+{{- $first := true }}
+{{- range $key, $value := .labels }}
+{{- if not $first }} \
+{{- end }}
+  {{ $key }}="{{ $value }}"
+{{- $first = false }}
+{{- end }}
+{{- end -}}
+{{- end -}}

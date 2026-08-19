@@ -1,5 +1,0 @@
-context:
-  config:
-    url: configs/config.yaml
-  cardinal:
-    url: configs/cardinal.yaml
