@@ -21,8 +21,6 @@
             nixfmt
 
             jq
-            yq
-            yamlfmt
             
             just
             gomplate
