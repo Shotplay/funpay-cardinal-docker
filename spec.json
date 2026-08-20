@@ -48,13 +48,22 @@
       "PYTHONDONTWRITEBYTECODE": 1,
       "PATH": "/venv/bin:${PATH}"
     },
-    "glibc": {
+    "glibc-debian12": {
       "platform": {
         "os": "debian"
       },
       "image": {
         "repo": "docker.io/python",
         "version": "3.11-bookworm"
+      }
+    },
+    "glibc-debian13": {
+      "platform": {
+        "os": "debian"
+      },
+      "image": {
+        "repo": "docker.io/python",
+        "version": "3.11-trixie"
       }
     },
     "musl": {
@@ -100,7 +109,7 @@
       ]
     },
     "slim-bookworm": {
-      "from": "glibc",
+      "from": "glibc-debian12",
       "create_user": true,
       "include": [],
       "tags": [],
@@ -128,7 +137,7 @@
       ]
     },
     "slim-trixie": {
-      "from": "glibc",
+      "from": "glibc-debian13",
       "create_user": true,
       "include": [],
       "tags": [
@@ -161,7 +170,7 @@
       ]
     },
     "distroless": {
-      "from": "glibc",
+      "from": "glibc-debian13",
       "create_user": true,
       "tags": [],
       "platforms": [

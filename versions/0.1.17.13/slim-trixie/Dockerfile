@@ -32,7 +32,7 @@ RUN git clone \
 # =========================================================
 # Stage 2: Build
 # =========================================================
-FROM docker.io/python:3.11-bookworm AS build
+FROM docker.io/python:3.11-trixie AS build
 
 WORKDIR /cardinal
 
@@ -58,7 +58,7 @@ LABEL \
   org.opencontainers.image.source="https://github.com/sidor0912/FunPayCardinal" \
   org.opencontainers.image.title="Funpay-Cardinal-Docker" \
   org.opencontainers.image.description="Auto-generated Docker image for containerizing the FunPayCardinal bot" \
-  image.generated="2026-08-20T16:28:42.537975981Z"
+  image.generated="2026-08-20T16:34:59.163609725Z"
 
 WORKDIR /cardinal
 
