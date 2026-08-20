@@ -33,6 +33,26 @@ variable "CARDINAL_REVISION" {
   default = "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
 }
 
+variable "OCI_AUTHORS" {
+  default = "shotplaymeow"
+}
+
+variable "OCI_URL" {
+  default = "https://github.com/Shotplay/funpay-cardinal-docker"
+}
+
+variable "OCI_SOURCE" {
+  default = "https://github.com/sidor0912/FunPayCardinal"
+}
+
+variable "OCI_TITLE" {
+  default = "Funpay-Cardinal-Docker"
+}
+
+variable "OCI_DESCRIPTION" {
+  default = "Auto-generated Docker image for containerizing the FunPayCardinal bot"
+}
+
 target "alpine" {
   inherits = ["_attest"]
   context = "./versions/0.1.17.13/alpine"
@@ -47,7 +67,23 @@ target "alpine" {
   labels = {
     "org.opencontainers.image.version"="${CARDINAL_VERSION}"
     "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
+    "org.opencontainers.image.authors"="${OCI_AUTHORS}"
+    "org.opencontainers.image.url"="${OCI_URL}"
+    "org.opencontainers.image.source"="${OCI_SOURCE}"
+    "org.opencontainers.image.title"="${OCI_TITLE}"
+    "org.opencontainers.image.description"="${OCI_DESCRIPTION}"
+    "org.opencontainers.image.base.name"="docker.io/python:3.11-alpine3.24"
   }
+  annotations = [
+    "org.opencontainers.image.version=${CARDINAL_VERSION}",
+    "org.opencontainers.image.revision=${CARDINAL_REVISION}",
+    "org.opencontainers.image.authors=${OCI_AUTHORS}",
+    "org.opencontainers.image.url=${OCI_URL}",
+    "org.opencontainers.image.source=${OCI_SOURCE}",
+    "org.opencontainers.image.title=${OCI_TITLE}",
+    "org.opencontainers.image.description=${OCI_DESCRIPTION}",
+    "org.opencontainers.image.base.name=docker.io/python:3.11-alpine3.24",
+  ]
 }
 
 target "distroless" {
@@ -64,7 +100,23 @@ target "distroless" {
   labels = {
     "org.opencontainers.image.version"="${CARDINAL_VERSION}"
     "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
+    "org.opencontainers.image.authors"="${OCI_AUTHORS}"
+    "org.opencontainers.image.url"="${OCI_URL}"
+    "org.opencontainers.image.source"="${OCI_SOURCE}"
+    "org.opencontainers.image.title"="${OCI_TITLE}"
+    "org.opencontainers.image.description"="${OCI_DESCRIPTION}"
+    "org.opencontainers.image.base.name"="gcr.io/distroless/cc-debian13:latest"
   }
+  annotations = [
+    "org.opencontainers.image.version=${CARDINAL_VERSION}",
+    "org.opencontainers.image.revision=${CARDINAL_REVISION}",
+    "org.opencontainers.image.authors=${OCI_AUTHORS}",
+    "org.opencontainers.image.url=${OCI_URL}",
+    "org.opencontainers.image.source=${OCI_SOURCE}",
+    "org.opencontainers.image.title=${OCI_TITLE}",
+    "org.opencontainers.image.description=${OCI_DESCRIPTION}",
+    "org.opencontainers.image.base.name=gcr.io/distroless/cc-debian13:latest",
+  ]
 }
 
 target "slim-bookworm" {
@@ -81,7 +133,23 @@ target "slim-bookworm" {
   labels = {
     "org.opencontainers.image.version"="${CARDINAL_VERSION}"
     "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
+    "org.opencontainers.image.authors"="${OCI_AUTHORS}"
+    "org.opencontainers.image.url"="${OCI_URL}"
+    "org.opencontainers.image.source"="${OCI_SOURCE}"
+    "org.opencontainers.image.title"="${OCI_TITLE}"
+    "org.opencontainers.image.description"="${OCI_DESCRIPTION}"
+    "org.opencontainers.image.base.name"="docker.io/python:3.11-slim-bookworm"
   }
+  annotations = [
+    "org.opencontainers.image.version=${CARDINAL_VERSION}",
+    "org.opencontainers.image.revision=${CARDINAL_REVISION}",
+    "org.opencontainers.image.authors=${OCI_AUTHORS}",
+    "org.opencontainers.image.url=${OCI_URL}",
+    "org.opencontainers.image.source=${OCI_SOURCE}",
+    "org.opencontainers.image.title=${OCI_TITLE}",
+    "org.opencontainers.image.description=${OCI_DESCRIPTION}",
+    "org.opencontainers.image.base.name=docker.io/python:3.11-slim-bookworm",
+  ]
 }
 
 target "slim-trixie" {
@@ -99,7 +167,23 @@ target "slim-trixie" {
   labels = {
     "org.opencontainers.image.version"="${CARDINAL_VERSION}"
     "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
+    "org.opencontainers.image.authors"="${OCI_AUTHORS}"
+    "org.opencontainers.image.url"="${OCI_URL}"
+    "org.opencontainers.image.source"="${OCI_SOURCE}"
+    "org.opencontainers.image.title"="${OCI_TITLE}"
+    "org.opencontainers.image.description"="${OCI_DESCRIPTION}"
+    "org.opencontainers.image.base.name"="docker.io/python:3.11-slim-trixie"
   }
+  annotations = [
+    "org.opencontainers.image.version=${CARDINAL_VERSION}",
+    "org.opencontainers.image.revision=${CARDINAL_REVISION}",
+    "org.opencontainers.image.authors=${OCI_AUTHORS}",
+    "org.opencontainers.image.url=${OCI_URL}",
+    "org.opencontainers.image.source=${OCI_SOURCE}",
+    "org.opencontainers.image.title=${OCI_TITLE}",
+    "org.opencontainers.image.description=${OCI_DESCRIPTION}",
+    "org.opencontainers.image.base.name=docker.io/python:3.11-slim-trixie",
+  ]
 }
 
 target "alpine-cross" {

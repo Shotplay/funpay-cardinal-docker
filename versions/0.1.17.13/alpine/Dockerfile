@@ -53,13 +53,7 @@ RUN pip install -r requirements.txt
 FROM docker.io/python:3.11-alpine3.24
 
 LABEL \
-  org.opencontainers.image.authors="shotplaymeow" \
-  org.opencontainers.image.url="https://github.com/Shotplay/funpay-cardinal-docker" \
-  org.opencontainers.image.source="https://github.com/sidor0912/FunPayCardinal" \
-  org.opencontainers.image.title="Funpay-Cardinal-Docker" \
-  org.opencontainers.image.description="Auto-generated Docker image for containerizing the FunPayCardinal bot" \
-  org.opencontainers.image.base.name="docker.io/python:3.11-alpine3.24" \
-  image.generated="2026-08-20T17:43:17.839954661Z"
+  image.generated="2026-08-20T18:06:57.521795704Z"
 
 WORKDIR /cardinal
 

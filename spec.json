@@ -1,4 +1,11 @@
 {
+  "oci": {
+    "authors": "shotplaymeow",
+    "url": "https://github.com/Shotplay/funpay-cardinal-docker",
+    "source": "https://github.com/sidor0912/FunPayCardinal",
+    "title": "Funpay-Cardinal-Docker",
+    "description": "Auto-generated Docker image for containerizing the FunPayCardinal bot"
+  },
   "dirs": {
     "cardinal": "/cardinal",
     "venv": "/venv"
