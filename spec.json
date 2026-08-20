@@ -84,7 +84,8 @@
       "tags": [],
       "platforms": [
         "linux/amd64",
-        "linux/arm64"
+        "linux/arm64",
+        "linux/arm64/v8"
       ],
       "image": {
         "repo": "docker.io/python",
