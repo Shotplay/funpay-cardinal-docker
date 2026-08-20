@@ -1,3 +1,11 @@
+{{ tmpl.Exec "license" . }}
+
+# =========================================================
+# THIS FILE IS GENERATED VIA "just update-dockerfile-target {{ .Env.TARGET }}".
+# 
+# PLEASE DO NOT EDIT IT MANUALLY.
+# =========================================================
+
 # =========================================================
 # Stage 1: Install repository
 # =========================================================
@@ -6,7 +14,8 @@ FROM {{ .spec.git.image.repo }}:{{ .spec.git.image.version }} AS install
 RUN git clone \
   --depth {{ .spec.git.clone.depth }} \
   --revision {{ .spec.cardinal.source.github.rev }} \
-  https://github.com/{{ .spec.cardinal.source.github.owner }}/{{ .spec.cardinal.source.github.repo }}{{ if gt (len .spec.git.cleanup.paths) 0 }}; \
+  https://github.com/{{ .spec.cardinal.source.github.owner }}/{{ .spec.cardinal.source.github.repo }}{{ if gt (len .spec.git.cleanup.paths) 0 }} \
+  {{ .spec.dirs.cardinal }} \
   && rm -rf \
   {{ conv.Join .spec.git.cleanup.paths " \\\n  " }}
   {{- end }}

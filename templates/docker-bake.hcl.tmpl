@@ -1,0 +1,72 @@
+{{- $tags_repo := "docker.io/shotplay/fp-cardinal" -}}
+{{- $cardinal_version := .spec.cardinal.version -}}
+{{- $cardinal_version_parts := strings.Split "." $cardinal_version -}}
+{{- $cardinal_major := index $cardinal_version_parts 0 -}}
+{{- $cardinal_minor := index $cardinal_version_parts 1 -}}
+{{- $cardinal_patch := index $cardinal_version_parts 2 -}}
+
+{{ tmpl.Exec "license" . }}
+
+# =========================================================
+# THIS FILE IS GENERATED VIA "just update-bake.
+# 
+# PLEASE DO NOT EDIT IT MANUALLY.
+# =========================================================
+
+group "default" {
+  targets = [
+    {{- range $key, $value := .spec.final }}
+    "{{ $key }}",
+    {{- end }}
+  ]
+}
+
+{{- range $key, $final := .spec.final }}
+
+target "{{ $key }}" {
+  inherits = ["_attest", "_cross"]
+  context = "./versions/{{ $.spec.cardinal.version }}/{{ $key }}"
+  dockerfile = "Dockerfile"
+  tags = [
+    {{- if gt (len $final.tags) 0 }}
+    {{- range $final.tags }}
+    "{{ $tags_repo }}:{{ . }}",
+    {{- end }}
+    {{- end }}
+    "{{ $tags_repo }}:latest-{{ $key }}",
+    "{{ $tags_repo }}:{{ $cardinal_version }}-{{ $key }}",
+    "{{ $tags_repo }}:{{ $cardinal_major }}.{{ $cardinal_minor }}.{{ $cardinal_patch }}-{{ $key }}",
+    "{{ $tags_repo }}:{{ $cardinal_major }}.{{ $cardinal_minor }}-{{ $key }}",
+    "{{ $tags_repo }}:{{ $cardinal_major }}-{{ $key }}",
+  ]
+  labels = {
+    "org.opencontainers.image.version"="{{ $.spec.cardinal.version }}"
+    "org.opencontainers.image.revision"="{{ $.spec.cardinal.source.github.rev }}"
+    "org.opencontainers.image.base.name"="{{ .image.repo }}:{{ .image.version }}"
+  }
+}
+{{- end }}
+
+target "_cross" {
+  platforms = [
+    "linux/amd64",
+    "linux/arm64",
+    "linux/arm/v6",
+    "linux/arm/v7",
+    "linux/arm64/v8",
+    "linux/ppc64le",
+    "linux/riscv64"
+  ]
+}
+
+target "_attest" {
+  attest = [
+    {
+      type = "provenance"
+      mode = "max"
+    },
+    {
+      type = "sbom"
+    }
+  ]
+}

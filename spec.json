@@ -63,7 +63,7 @@
       },
       "image": {
         "repo": "docker.io/python",
-        "version": "3.11-alpine"
+        "version": "3.11-alpine3.24"
       }
     }
   },
@@ -72,19 +72,10 @@
       "from": "musl",
       "create_user": true,
       "include": [],
-      "labels": {
-        "org.opencontainers.image.authors": "shotplaymeow",
-        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
-        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
-        "org.opencontainers.image.version": "0.1.17.13",
-        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
-        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
-        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
-        "org.opencontainers.image.base.name": "docker.io/python:3.11-alpine"
-      },
+      "tags": [],
       "image": {
         "repo": "docker.io/python",
-        "version": "3.11-alpine"
+        "version": "3.11-alpine3.24"
       },
       "env": {
         "PYTHONDONTWRITEBYTECODE": 1,
@@ -103,16 +94,7 @@
       "from": "glibc",
       "create_user": true,
       "include": [],
-      "labels": {
-        "org.opencontainers.image.authors": "shotplaymeow",
-        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
-        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
-        "org.opencontainers.image.version": "0.1.17.13",
-        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
-        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
-        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
-        "org.opencontainers.image.base.name": "docker.io/python:3.11-slim-bookworm"
-      },
+      "tags": [],
       "image": {
         "repo": "docker.io/python",
         "version": "3.11-slim-bookworm"
@@ -134,16 +116,9 @@
       "from": "glibc",
       "create_user": true,
       "include": [],
-      "labels": {
-        "org.opencontainers.image.authors": "shotplaymeow",
-        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
-        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
-        "org.opencontainers.image.version": "0.1.17.13",
-        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
-        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
-        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
-        "org.opencontainers.image.base.name": "docker.io/python:3.11-slim-trixie"
-      },
+      "tags": [
+        "latest"
+      ],
       "image": {
         "repo": "docker.io/python",
         "version": "3.11-slim-trixie"
@@ -164,6 +139,7 @@
     "distroless": {
       "from": "glibc",
       "create_user": true,
+      "tags": [],
       "include": [
         {
           "from": "build",
@@ -182,16 +158,6 @@
           ]
         }
       ],
-      "labels": {
-        "org.opencontainers.image.authors": "shotplaymeow",
-        "org.opencontainers.image.url": "https://github.com/Shotplay/funpay-cardinal-docker",
-        "org.opencontainers.image.source": "https://github.com/sidor0912/FunPayCardinal",
-        "org.opencontainers.image.version": "0.1.17.13",
-        "org.opencontainers.image.revision": "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f",
-        "org.opencontainers.image.title": "Funpay-Cardinal-Docker",
-        "org.opencontainers.image.description": "Auto-generated Docker image for containerizing the FunPayCardinal bot",
-        "org.opencontainers.image.base.name": "gcr.io/distroless/cc-debian13:latest"
-      },
       "image": {
         "repo": "gcr.io/distroless/cc-debian13",
         "version": "latest"
