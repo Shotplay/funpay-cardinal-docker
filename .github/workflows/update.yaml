@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       new_tags: ${{ steps.compare_tags.outputs.new_tags }}
+      raw_tags: ${{ steps.get_tags.outputs.raw_tags }}
     env:
       TAGS_COUNT: 10
     steps:
@@ -32,6 +33,7 @@ jobs:
           echo "TAGS_RAW: $TAGS"
           echo "TAGS_NAMES: $NAMES"
 
+          echo "raw_tags=$TAGS" >> $GITHUB_OUTPUT
           echo "tags<<EOF" >> $GITHUB_OUTPUT
           echo "$NAMES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -92,14 +94,17 @@ jobs:
       - uses: NixOS/nix-installer-action@v1
 
       - name: Update to ${{ matrix.tag }}
-        run: just update-to ${{ matrix.tag }}
+        run: |
+          REVISION=$(jq --arg ver ${{ matrix.tag }} -r '.[] | select(.name == $ver)' <<< "${{ needs.detect-new-tags.outputs.raw_tags }}")
+
+          just update-version "${${{ matrix.tag }}#v}" "$REVISION"
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v8
         with:
-          commit-message: "ci(update): automatic update to ${{ matrix.tag }}"
-          title: "ci(update): automatic update to ${{ matrix.tag }}"
+          commit-message: "ci(update): automatic update cardinal to ${{ matrix.tag }}"
+          title: "ci(update): automatic update cardinal to ${{ matrix.tag }}"
           body: "This PR is created automatically by github actions workflow"
-          branch: auto-update-${{ matrix.tag }}
+          branch: ci-update-${{ matrix.tag }}
           base: main
           sign-commits: true

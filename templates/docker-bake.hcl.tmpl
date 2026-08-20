@@ -21,10 +21,18 @@ group "default" {
   ]
 }
 
+group "cross" {
+  targets = [
+    {{- range $key, $value := .spec.final }}
+    "{{ $key }}-cross",
+    {{- end }}
+  ]
+}
+
 {{- range $key, $final := .spec.final }}
 
 target "{{ $key }}" {
-  inherits = ["_attest", "_cross"]
+  inherits = ["_attest"]
   context = "./versions/{{ $.spec.cardinal.version }}/{{ $key }}"
   dockerfile = "Dockerfile"
   tags = [
@@ -44,6 +52,13 @@ target "{{ $key }}" {
     "org.opencontainers.image.revision"="{{ $.spec.cardinal.source.github.rev }}"
     "org.opencontainers.image.base.name"="{{ .image.repo }}:{{ .image.version }}"
   }
+}
+{{- end }}
+
+{{- range $key, $final := .spec.final }}
+
+target "{{ $key }}-cross" {
+  inherits = ["{{ $key }}", "_cross"]
 }
 {{- end }}
 

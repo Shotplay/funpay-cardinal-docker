@@ -16,8 +16,17 @@ group "default" {
   ]
 }
 
+group "cross" {
+  targets = [
+    "alpine-cross",
+    "distroless-cross",
+    "slim-bookworm-cross",
+    "slim-trixie-cross",
+  ]
+}
+
 target "alpine" {
-  inherits = ["_attest", "_cross"]
+  inherits = ["_attest"]
   context = "./versions/0.1.17.13/alpine"
   dockerfile = "Dockerfile"
   tags = [
@@ -35,7 +44,7 @@ target "alpine" {
 }
 
 target "distroless" {
-  inherits = ["_attest", "_cross"]
+  inherits = ["_attest"]
   context = "./versions/0.1.17.13/distroless"
   dockerfile = "Dockerfile"
   tags = [
@@ -53,7 +62,7 @@ target "distroless" {
 }
 
 target "slim-bookworm" {
-  inherits = ["_attest", "_cross"]
+  inherits = ["_attest"]
   context = "./versions/0.1.17.13/slim-bookworm"
   dockerfile = "Dockerfile"
   tags = [
@@ -71,7 +80,7 @@ target "slim-bookworm" {
 }
 
 target "slim-trixie" {
-  inherits = ["_attest", "_cross"]
+  inherits = ["_attest"]
   context = "./versions/0.1.17.13/slim-trixie"
   dockerfile = "Dockerfile"
   tags = [
@@ -87,6 +96,22 @@ target "slim-trixie" {
     "org.opencontainers.image.revision"="4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
     "org.opencontainers.image.base.name"="docker.io/python:3.11-slim-trixie"
   }
+}
+
+target "alpine-cross" {
+  inherits = ["alpine", "_cross"]
+}
+
+target "distroless-cross" {
+  inherits = ["distroless", "_cross"]
+}
+
+target "slim-bookworm-cross" {
+  inherits = ["slim-bookworm", "_cross"]
+}
+
+target "slim-trixie-cross" {
+  inherits = ["slim-trixie", "_cross"]
 }
 
 target "_cross" {
