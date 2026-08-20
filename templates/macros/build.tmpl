@@ -1,0 +1,15 @@
+{{- define "build" -}}
+{{- $final := (index .spec.final .Env.TARGET) -}}
+{{- $stage := (index .spec.build $final.from) -}}
+FROM {{ $stage.image.repo }}:{{ $stage.image.version }} AS build
+
+WORKDIR {{ .spec.dirs.cardinal }}
+
+{{ tmpl.Exec "env" .spec.build }}
+
+RUN python -m venv --copies {{ .spec.dirs.venv }}
+
+COPY --from=install {{ .spec.dirs.cardinal }}/requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+{{- end -}}

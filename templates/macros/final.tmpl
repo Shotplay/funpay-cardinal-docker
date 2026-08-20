@@ -1,0 +1,37 @@
+{{- define "final" -}}
+{{- $stage := (index .spec.final .Env.TARGET) -}}
+FROM {{ $stage.image.repo }}:{{ $stage.image.version }}
+
+{{ tmpl.Exec "labels" $stage }}
+
+WORKDIR {{ .spec.dirs.cardinal }}
+
+{{ tmpl.Exec "env" $stage }}
+
+{{- if gt (len $stage.include) 0 }}
+{{- range $stage.include }}
+
+COPY \
+  {{- if (coll.Has . "from") }}
+  --from={{ .from }} \
+  {{- end }}
+  {{- if (coll.Has . "owner") }}
+  --chown={{ .owner }} \
+  {{- end }}
+  {{ conv.Join .srcs " \\\n  " }} \
+  {{ .dest }}
+{{- end }}
+{{- end }}
+
+COPY --from=build {{ .spec.dirs.venv }} {{ .spec.dirs.venv }}
+COPY --from=install \
+  {{- if $stage.create_user }}
+  --chown={{ .spec.user.name }}:{{ .spec.user.group }} \
+  {{- else if eq .Env.TARGET "distroless" }}
+  --chown=nonroot:nonroot \
+  {{- end }}
+  {{ .spec.dirs.cardinal }} {{ .spec.dirs.cardinal }}
+
+ENTRYPOINT {{ data.ToJSON $stage.entrypoint }}
+CMD {{ data.ToJSON $stage.cmd }}
+{{- end -}}

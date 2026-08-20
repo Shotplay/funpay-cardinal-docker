@@ -1,0 +1,9 @@
+{{- define "labels" -}}
+LABEL \
+  org.opencontainers.image.authors="shotplaymeow" \
+  org.opencontainers.image.url="https://github.com/Shotplay/funpay-cardinal-docker" \
+  org.opencontainers.image.source="https://github.com/sidor0912/FunPayCardinal" \
+  org.opencontainers.image.title="Funpay-Cardinal-Docker" \
+  org.opencontainers.image.description="Auto-generated Docker image for containerizing the FunPayCardinal bot" \
+  image.generated="{{ (time.Now).UTC.Format "2006-01-02T15:04:05.000000000Z" }}"
+{{- end -}}

@@ -1,3 +1,5 @@
+<!-- cSpell: disable -->
+
 # Funpay Cardinal Docker
 
 [English][readme] | [Русский][readme-ru]

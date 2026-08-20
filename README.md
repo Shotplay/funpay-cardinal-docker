@@ -1,5 +1,6 @@
 # Funpay Cardinal Docker
 
+<!-- cSpell: disable-next-line -->
 [English][readme] | [Русский][readme-ru]
 
 Docker images for [FunPayCardinal][cardinal] bot

@@ -1,28 +1,44 @@
-set-cardinal-version version:
-    sed -i 's/^version: .*/version: {{ version }}/' configs/cardinal.yaml
+set lazy
 
-update-to version:
-    just set-cardinal-version "{{ version }}"
-    just update-all-targets
+cardinal_version := `jq '.cardinal.version' spec.json`
+cardinal_version_jq_filter := '
+.cardinal.version = $ver
+| .cardinal.source.github.rev = $rev
+| (.final[].labels."org.opencontainers.image.version") = $ver
+'
 
-update-all-targets:
-    just update-target "alpine"
-    just update-target "slim-bookworm"
-    just update-target "slim-trixie"
+update:
+  just update-bake
+  just update-dockerfile-target "alpine"
+  just update-dockerfile-target "distroless"
+  just update-dockerfile-target "slim-trixie"
+  just update-dockerfile-target "slim-bookworm"
 
-update-dockerfile-all-targets:
-    just update-dockerfile-target "alpine"
-    just update-dockerfile-target "slim-bookworm"
-    just update-dockerfile-target "slim-trixie"
+update-version version revision:
+  just set-cardinal-version {{ version }} {{ revision }}
+  just update
+
+set-cardinal-version version revision:
+  jq \
+    --arg ver "{{ version }}" \
+    --arg rev "{{ revision }}" \
+    '{{ cardinal_version_jq_filter }}' \
+    spec.json > spec.json.tmp
+  mv spec.json.tmp spec.json
 
 update-dockerfile-target target:
-    gomplate \
-      -c target="configs/{{ target }}.yaml" \
-      -f templates/Dockerfile.tmpl \
-      -o "targets/contexts/{{ target }}/Dockerfile"
+  TARGET="{{ target }}" \
+  gomplate -c spec=spec.json \
+  -f templates/Dockerfile.tmpl \
+  -o versions/{{ cardinal_version }}/{{ target }}/Dockerfile \
+  -t templates/macros/build.tmpl \
+  -t templates/macros/env.tmpl \
+  -t templates/macros/final.tmpl \
+  -t templates/macros/labels.tmpl \
+  -t templates/macros/license.tmpl
 
-update-target target:
-    gomplate \
-      -c target="configs/{{ target }}.yaml" \
-      -f templates/docker-bake.hcl.tmpl \
-      -o "targets/{{ target }}.hcl"
+update-bake:
+  gomplate -c spec=spec.json \
+  -f templates/docker-bake.hcl.tmpl \
+  -o docker-bake.hcl \
+  -t templates/macros/license.tmpl
