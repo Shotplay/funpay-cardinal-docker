@@ -25,6 +25,14 @@ group "cross" {
   ]
 }
 
+variable "CARDINAL_VERSION" {
+  default = "0.1.17.13"
+}
+
+variable "CARDINAL_REVISION" {
+  default = "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
+}
+
 target "alpine" {
   inherits = ["_attest"]
   context = "./versions/0.1.17.13/alpine"
@@ -37,9 +45,8 @@ target "alpine" {
     "docker.io/shotplay/fp-cardinal:0-alpine",
   ]
   labels = {
-    "org.opencontainers.image.version"="0.1.17.13"
-    "org.opencontainers.image.revision"="4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
-    "org.opencontainers.image.base.name"="docker.io/python:3.11-alpine3.24"
+    "org.opencontainers.image.version"="${CARDINAL_VERSION}"
+    "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
   }
 }
 
@@ -55,9 +62,8 @@ target "distroless" {
     "docker.io/shotplay/fp-cardinal:0-distroless",
   ]
   labels = {
-    "org.opencontainers.image.version"="0.1.17.13"
-    "org.opencontainers.image.revision"="4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
-    "org.opencontainers.image.base.name"="gcr.io/distroless/cc-debian13:latest"
+    "org.opencontainers.image.version"="${CARDINAL_VERSION}"
+    "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
   }
 }
 
@@ -73,9 +79,8 @@ target "slim-bookworm" {
     "docker.io/shotplay/fp-cardinal:0-slim-bookworm",
   ]
   labels = {
-    "org.opencontainers.image.version"="0.1.17.13"
-    "org.opencontainers.image.revision"="4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
-    "org.opencontainers.image.base.name"="docker.io/python:3.11-slim-bookworm"
+    "org.opencontainers.image.version"="${CARDINAL_VERSION}"
+    "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
   }
 }
 
@@ -92,9 +97,8 @@ target "slim-trixie" {
     "docker.io/shotplay/fp-cardinal:0-slim-trixie",
   ]
   labels = {
-    "org.opencontainers.image.version"="0.1.17.13"
-    "org.opencontainers.image.revision"="4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
-    "org.opencontainers.image.base.name"="docker.io/python:3.11-slim-trixie"
+    "org.opencontainers.image.version"="${CARDINAL_VERSION}"
+    "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
   }
 }
 

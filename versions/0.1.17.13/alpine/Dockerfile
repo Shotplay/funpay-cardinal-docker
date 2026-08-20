@@ -58,7 +58,8 @@ LABEL \
   org.opencontainers.image.source="https://github.com/sidor0912/FunPayCardinal" \
   org.opencontainers.image.title="Funpay-Cardinal-Docker" \
   org.opencontainers.image.description="Auto-generated Docker image for containerizing the FunPayCardinal bot" \
-  image.generated="2026-08-20T16:34:59.007435115Z"
+  org.opencontainers.image.base.name="docker.io/python:3.11-alpine3.24"
+  image.generated="2026-08-20T17:03:18.975409567Z"
 
 WORKDIR /cardinal
 

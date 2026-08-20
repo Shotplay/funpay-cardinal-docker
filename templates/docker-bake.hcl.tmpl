@@ -29,6 +29,14 @@ group "cross" {
   ]
 }
 
+variable "CARDINAL_VERSION" {
+  default = "{{ $cardinal_version }}"
+}
+
+variable "CARDINAL_REVISION" {
+  default = "{{ .spec.cardinal.source.github.rev }}"
+}
+
 {{- range $key, $final := .spec.final }}
 
 target "{{ $key }}" {
@@ -48,9 +56,8 @@ target "{{ $key }}" {
     "{{ $tags_repo }}:{{ $cardinal_major }}-{{ $key }}",
   ]
   labels = {
-    "org.opencontainers.image.version"="{{ $.spec.cardinal.version }}"
-    "org.opencontainers.image.revision"="{{ $.spec.cardinal.source.github.rev }}"
-    "org.opencontainers.image.base.name"="{{ .image.repo }}:{{ .image.version }}"
+    "org.opencontainers.image.version"="${CARDINAL_VERSION}"
+    "org.opencontainers.image.revision"="${CARDINAL_REVISION}"
   }
 }
 {{- end }}
