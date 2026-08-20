@@ -107,9 +107,6 @@ target "alpine-cross" {
   platforms = [
     "linux/amd64",
     "linux/arm64",
-    "linux/arm/v7",
-    "linux/arm64/v8",
-    "linux/riscv64",
   ]
 }
 
@@ -118,7 +115,6 @@ target "distroless-cross" {
   platforms = [
     "linux/amd64",
     "linux/arm64",
-    "linux/riscv64",
   ]
 }
 
@@ -126,7 +122,6 @@ target "slim-bookworm-cross" {
   inherits = ["slim-bookworm"]
   platforms = [
     "linux/amd64",
-    "linux/arm/v7",
     "linux/arm64/v8",
   ]
 }
@@ -136,9 +131,6 @@ target "slim-trixie-cross" {
   platforms = [
     "linux/amd64",
     "linux/arm64",
-    "linux/arm/v7",
-    "linux/arm64/v8",
-    "linux/riscv64",
   ]
 }
 
