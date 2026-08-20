@@ -73,6 +73,15 @@
       "create_user": true,
       "include": [],
       "tags": [],
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64/v8",
+        "linux/ppc64le",
+        "linux/riscv64"
+      ],
       "image": {
         "repo": "docker.io/python",
         "version": "3.11-alpine3.24"
@@ -95,6 +104,12 @@
       "create_user": true,
       "include": [],
       "tags": [],
+      "platforms": [
+        "linux/amd64",
+        "linux/arm/v7",
+        "linux/arm64/v8",
+        "linux/ppc64le"
+      ],
       "image": {
         "repo": "docker.io/python",
         "version": "3.11-slim-bookworm"
@@ -119,6 +134,15 @@
       "tags": [
         "latest"
       ],
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64/v8",
+        "linux/ppc64le",
+        "linux/riscv64"
+      ],
       "image": {
         "repo": "docker.io/python",
         "version": "3.11-slim-trixie"
@@ -140,6 +164,15 @@
       "from": "glibc",
       "create_user": true,
       "tags": [],
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64",
+        "linux/arm/v6",
+        "linux/arm/v7",
+        "linux/arm64/v8",
+        "linux/ppc64le",
+        "linux/riscv64"
+      ],
       "include": [
         {
           "from": "build",

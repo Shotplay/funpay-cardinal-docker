@@ -99,22 +99,7 @@ target "slim-trixie" {
 }
 
 target "alpine-cross" {
-  inherits = ["alpine", "_cross"]
-}
-
-target "distroless-cross" {
-  inherits = ["distroless", "_cross"]
-}
-
-target "slim-bookworm-cross" {
-  inherits = ["slim-bookworm", "_cross"]
-}
-
-target "slim-trixie-cross" {
-  inherits = ["slim-trixie", "_cross"]
-}
-
-target "_cross" {
+  inherits = ["alpine"]
   platforms = [
     "linux/amd64",
     "linux/arm64",
@@ -122,7 +107,43 @@ target "_cross" {
     "linux/arm/v7",
     "linux/arm64/v8",
     "linux/ppc64le",
-    "linux/riscv64"
+    "linux/riscv64",
+  ]
+}
+
+target "distroless-cross" {
+  inherits = ["distroless"]
+  platforms = [
+    "linux/amd64",
+    "linux/arm64",
+    "linux/arm/v6",
+    "linux/arm/v7",
+    "linux/arm64/v8",
+    "linux/ppc64le",
+    "linux/riscv64",
+  ]
+}
+
+target "slim-bookworm-cross" {
+  inherits = ["slim-bookworm"]
+  platforms = [
+    "linux/amd64",
+    "linux/arm/v7",
+    "linux/arm64/v8",
+    "linux/ppc64le",
+  ]
+}
+
+target "slim-trixie-cross" {
+  inherits = ["slim-trixie"]
+  platforms = [
+    "linux/amd64",
+    "linux/arm64",
+    "linux/arm/v6",
+    "linux/arm/v7",
+    "linux/arm64/v8",
+    "linux/ppc64le",
+    "linux/riscv64",
   ]
 }
 
