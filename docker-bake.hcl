@@ -107,7 +107,6 @@ target "alpine-cross" {
   platforms = [
     "linux/amd64",
     "linux/arm64",
-    "linux/arm/v6",
     "linux/arm/v7",
     "linux/arm64/v8",
     "linux/riscv64",
@@ -137,7 +136,6 @@ target "slim-trixie-cross" {
   platforms = [
     "linux/amd64",
     "linux/arm64",
-    "linux/arm/v6",
     "linux/arm/v7",
     "linux/arm64/v8",
     "linux/riscv64",
