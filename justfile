@@ -14,10 +14,6 @@ update:
   just update-dockerfile-target "slim-trixie"
   just update-dockerfile-target "slim-bookworm"
 
-build:
-  docker buildx bake \
-    --set=*.labels."org.opencontainers.image.created"=$(date -u +'%Y-%m-%dT%H:%M:%S.%NZ')
-
 update-version version revision:
   just set-cardinal-version {{ version }} {{ revision }}
   just update
