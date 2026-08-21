@@ -53,7 +53,7 @@ RUN pip install -r requirements.txt
 FROM gcr.io/distroless/cc-debian13:latest
 
 LABEL \
-  image.generated="2026-08-20T18:06:57.625917934Z"
+  image.generated="2026-08-21T10:13:20.151021243Z"
 
 WORKDIR /cardinal
 

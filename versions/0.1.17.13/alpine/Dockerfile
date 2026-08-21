@@ -53,7 +53,7 @@ RUN pip install -r requirements.txt
 FROM docker.io/python:3.11-alpine3.24
 
 LABEL \
-  image.generated="2026-08-20T18:06:57.521795704Z"
+  image.generated="2026-08-21T10:13:20.117665647Z"
 
 WORKDIR /cardinal
 
