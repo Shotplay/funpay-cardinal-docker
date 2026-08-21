@@ -31,6 +31,8 @@ jobs:
         with:
           fetch-depth: 1
 
+      - uses: NixOS/nix-installer-action@v1
+
       - name: Get cardinal version
         id: cardinal_version
         run: |
@@ -56,4 +58,4 @@ jobs:
         with:
           push: true
           targets: ${{ matrix.target }}-cross
-          files: version/${{ steps.cardinal_version.outputs.version }}/docker-bake.hcl
+          files: versions/${{ steps.cardinal_version.outputs.version }}/docker-bake.hcl
