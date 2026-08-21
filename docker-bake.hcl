@@ -26,11 +26,11 @@ group "cross" {
 }
 
 variable "CARDINAL_VERSION" {
-  default = "0.1.17.4"
+  default = "0.1.17.5"
 }
 
 variable "CARDINAL_REVISION" {
-  default = "9ec8582a79b4a006ca0d5c8ab953a3d0972731d1"
+  default = "42daa47dea0233cd3ea66bea30ab8fc0cb7fc24c"
 }
 
 variable "OCI_AUTHORS" {
@@ -55,11 +55,11 @@ variable "OCI_DESCRIPTION" {
 
 target "alpine" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.4/alpine"
+  context = "./versions/0.1.17.5/alpine"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-alpine",
-    "docker.io/shotplay/fp-cardinal:0.1.17.4-alpine",
+    "docker.io/shotplay/fp-cardinal:0.1.17.5-alpine",
     "docker.io/shotplay/fp-cardinal:0.1.17-alpine",
     "docker.io/shotplay/fp-cardinal:0.1-alpine",
     "docker.io/shotplay/fp-cardinal:0-alpine",
@@ -88,11 +88,11 @@ target "alpine" {
 
 target "distroless" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.4/distroless"
+  context = "./versions/0.1.17.5/distroless"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-distroless",
-    "docker.io/shotplay/fp-cardinal:0.1.17.4-distroless",
+    "docker.io/shotplay/fp-cardinal:0.1.17.5-distroless",
     "docker.io/shotplay/fp-cardinal:0.1.17-distroless",
     "docker.io/shotplay/fp-cardinal:0.1-distroless",
     "docker.io/shotplay/fp-cardinal:0-distroless",
@@ -121,11 +121,11 @@ target "distroless" {
 
 target "slim-bookworm" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.4/slim-bookworm"
+  context = "./versions/0.1.17.5/slim-bookworm"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-slim-bookworm",
-    "docker.io/shotplay/fp-cardinal:0.1.17.4-slim-bookworm",
+    "docker.io/shotplay/fp-cardinal:0.1.17.5-slim-bookworm",
     "docker.io/shotplay/fp-cardinal:0.1.17-slim-bookworm",
     "docker.io/shotplay/fp-cardinal:0.1-slim-bookworm",
     "docker.io/shotplay/fp-cardinal:0-slim-bookworm",
@@ -154,12 +154,12 @@ target "slim-bookworm" {
 
 target "slim-trixie" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.4/slim-trixie"
+  context = "./versions/0.1.17.5/slim-trixie"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest",
     "docker.io/shotplay/fp-cardinal:latest-slim-trixie",
-    "docker.io/shotplay/fp-cardinal:0.1.17.4-slim-trixie",
+    "docker.io/shotplay/fp-cardinal:0.1.17.5-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0.1.17-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0.1-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0-slim-trixie",
