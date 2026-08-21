@@ -27,7 +27,7 @@ jobs:
       - name: Get tags
         id: get_tags
         run: |
-          TAGS=$(curl https://api.github.com/repos/sidor0912/FunPayCardinal/tags?per_page=$TAGS_COUNT)
+          TAGS=$(curl https://api.github.com/repos/sidor0912/FunPayCardinal/tags?per_page=$TAGS_COUNT | jq -c)
           NAMES=$(jq -r '.[].name' <<< "$TAGS")
 
           echo "TAGS_RAW: $TAGS"
