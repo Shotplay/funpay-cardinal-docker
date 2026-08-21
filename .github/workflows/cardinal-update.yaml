@@ -100,7 +100,7 @@ jobs:
           RAW_TAGS='${{ needs.detect-new-tags.outputs.raw_tags }}'
           REVISION=$(jq --arg ver $VERSION -r '.[] | select(.name == $ver) | .commit.sha' <<< "$RAW_TAGS")
 
-          just update-version "${$VERSION#v}" "$REVISION"
+          just update-version "${VERSION#v}" "$REVISION"
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v8
