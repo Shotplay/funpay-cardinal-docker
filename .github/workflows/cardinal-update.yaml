@@ -53,7 +53,7 @@ jobs:
           GET_TAGS="${{ steps.get_tags.outputs.tags }}"
 
           echo "GET_TAGS: $GET_TAGS"
-          echo "$(cat "$PROCESSED_TAGS_FILE")"
+          echo "PROCESSED TAGS: $(cat "$PROCESSED_TAGS_FILE")"
 
           if [[ -s $PROCESSED_TAGS_FILE ]]; then
             TAGS=$((echo "$GET_TAGS" | grep -v -F -f "$PROCESSED_TAGS_FILE") || echo "")
