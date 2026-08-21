@@ -2,8 +2,6 @@
 {{- $stage := (index .spec.final .Env.TARGET) -}}
 FROM {{ $stage.image.repo }}:{{ $stage.image.version }}
 
-{{ tmpl.Exec "labels" $stage }}
-
 WORKDIR {{ .spec.dirs.cardinal }}
 
 {{ tmpl.Exec "env" $stage }}

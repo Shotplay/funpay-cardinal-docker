@@ -52,9 +52,6 @@ RUN pip install -r requirements.txt
 # =========================================================
 FROM gcr.io/distroless/cc-debian13:latest
 
-LABEL \
-  image.generated="2026-08-21T10:13:20.151021243Z"
-
 WORKDIR /cardinal
 
 ENV \

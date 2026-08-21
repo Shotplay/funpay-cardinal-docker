@@ -34,7 +34,6 @@ update-dockerfile-target target:
   -t templates/macros/build.tmpl \
   -t templates/macros/env.tmpl \
   -t templates/macros/final.tmpl \
-  -t templates/macros/labels.tmpl \
   -t templates/macros/license.tmpl
 
 update-bake:
