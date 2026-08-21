@@ -55,6 +55,8 @@ jobs:
 
       - name: Build and push
         uses: docker/bake-action@v7
+        env:
+          BUILDX_BAKE_FILE_RELATIVE_PATHS: 1
         with:
           push: true
           targets: ${{ matrix.target }}-cross
