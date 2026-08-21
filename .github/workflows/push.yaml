@@ -48,4 +48,4 @@ jobs:
           targets: ${{ matrix.target }}-cross
           set: |
             *.cache-from=type=gha
-            *.cache-to=type=gha,mode=min
+            *.cache-to=type=gha,mode=max
