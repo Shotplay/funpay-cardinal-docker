@@ -53,7 +53,7 @@ RUN pip install -r requirements.txt
 FROM docker.io/python:3.11-slim-trixie
 
 LABEL \
-  image.generated="2026-08-20T18:06:57.725888936Z"
+  image.generated="2026-08-21T10:13:20.184144122Z"
 
 WORKDIR /cardinal
 

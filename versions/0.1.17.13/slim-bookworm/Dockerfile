@@ -53,7 +53,7 @@ RUN pip install -r requirements.txt
 FROM docker.io/python:3.11-slim-bookworm
 
 LABEL \
-  image.generated="2026-08-20T18:06:57.813941596Z"
+  image.generated="2026-08-21T10:13:20.217161523Z"
 
 WORKDIR /cardinal
 
