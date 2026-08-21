@@ -96,10 +96,11 @@ jobs:
 
       - name: Update to ${{ matrix.tag }}
         run: |
+          VERSION="${{ matrix.tag }}"
           RAW_TAGS='${{ needs.detect-new-tags.outputs.raw_tags }}'
-          REVISION=$(jq --arg ver ${{ matrix.tag }} -r '.[] | select(.name == $ver) | .commit.sha' <<< "$RAW_TAGS")
+          REVISION=$(jq --arg ver $VERSION -r '.[] | select(.name == $ver) | .commit.sha' <<< "$RAW_TAGS")
 
-          just update-version "${${{ matrix.tag }}#v}" "$REVISION"
+          just update-version "${$VERSION#v}" "$REVISION"
 
       - name: Create PR
         uses: peter-evans/create-pull-request@v8
