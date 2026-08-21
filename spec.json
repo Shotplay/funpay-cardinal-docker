@@ -109,10 +109,7 @@
       ],
       "cmd": [
         "main.py"
-      ],
-      "labels": {
-        "org.opencontainers.image.version": "0.1.17.13"
-      }
+      ]
     },
     "slim-bookworm": {
       "from": "glibc-debian12",
@@ -138,10 +135,7 @@
       ],
       "cmd": [
         "main.py"
-      ],
-      "labels": {
-        "org.opencontainers.image.version": "0.1.17.13"
-      }
+      ]
     },
     "slim-trixie": {
       "from": "glibc-debian13",
@@ -169,10 +163,7 @@
       ],
       "cmd": [
         "main.py"
-      ],
-      "labels": {
-        "org.opencontainers.image.version": "0.1.17.13"
-      }
+      ]
     },
     "distroless": {
       "from": "glibc-debian13",
@@ -216,10 +207,7 @@
       ],
       "cmd": [
         "main.py"
-      ],
-      "labels": {
-        "org.opencontainers.image.version": "0.1.17.13"
-      }
+      ]
     }
   }
 }

@@ -4,7 +4,6 @@ cardinal_version := `jq '.cardinal.version' spec.json`
 cardinal_version_jq_filter := '
 .cardinal.version = $ver
 | .cardinal.source.github.rev = $rev
-| (.final[].labels."org.opencontainers.image.version") = $ver
 '
 
 update:
