@@ -11,9 +11,11 @@ jobs:
     if: |
       github.event.pull_request.merged == true || 
       github.event_name == 'workflow_dispatch'
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
     strategy:
       matrix:
         target:
