@@ -27,13 +27,13 @@ jobs:
       - name: Get tags
         id: get_tags
         run: |
-          TAGS=$(curl https://api.github.com/repos/sidor0912/FunPayCardinal/tags?per_page=$TAGS_COUNT | jq -c)
+          TAGS=$(curl https://api.github.com/repos/sidor0912/FunPayCardinal/tags?per_page=$TAGS_COUNT)
           NAMES=$(jq -r '.[].name' <<< "$TAGS")
 
           echo "TAGS_RAW: $TAGS"
           echo "TAGS_NAMES: $NAMES"
 
-          echo "raw_tags=$TAGS" >> $GITHUB_OUTPUT
+          echo "raw_tags=$(echo "$TAGS" | jq -c -r)" >> $GITHUB_OUTPUT
           echo "tags<<EOF" >> $GITHUB_OUTPUT
           echo "$NAMES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -96,7 +96,7 @@ jobs:
 
       - name: Update to ${{ matrix.tag }}
         run: |
-          RAW_TAGS="${{ needs.detect-new-tags.outputs.raw_tags }}"
+          RAW_TAGS='${{ needs.detect-new-tags.outputs.raw_tags }}'
           REVISION=$(jq --arg ver ${{ matrix.tag }} -r '.[] | select(.name == $ver) | .commit.sha' <<< "$RAW_TAGS")
 
           just update-version "${${{ matrix.tag }}#v}" "$REVISION"
