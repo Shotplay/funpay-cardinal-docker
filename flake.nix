@@ -26,6 +26,10 @@
               just
               gomplate
             ];
+
+            shellHook = ''
+              export BUILDX_BAKE_FILE_RELATIVE_PATHS=1 
+            '';
           };
           ci = pkgs.mkShell {
             packages = with pkgs; [
@@ -34,6 +38,10 @@
               just
               gomplate
             ];
+
+            shellHook = ''
+              export BUILDX_BAKE_FILE_RELATIVE_PATHS=1 
+            '';
           };
         };
       }
