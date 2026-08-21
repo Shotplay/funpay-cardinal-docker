@@ -26,19 +26,19 @@ Images published on Docker Hub: https://hub.docker.com/r/shotplay/fp-cardinal.
 **1. Interactive setup (creates configs)**:
 ```bash
 $ docker run --rm -it --name funpay-cardinal-init \
-    -v ./configs:/opt/cardinal/configs \
+    -v ./configs:/cardinal/configs \
     shotplay/fp-cardinal 
 ```
 
 **2. Run in detached mode (persistent)**:
 ```bash
 $ docker run -d --name funpay-cardinal \
-    -v ./configs:/opt/cardinal/configs \
-    -v ./plugins:/opt/cardinal/plugins \
-    -v ./storage:/opt/cardinal/storage \
+    -v ./configs:/cardinal/configs \
+    -v ./plugins:/cardinal/plugins \
+    -v ./storage:/cardinal/storage \
     shotplay/fp-cardinal
 ```
-> **Tip**: To persist logs on the host, add `-v ./logs:/opt/cardinal/logs` to the command.
+> **Tip**: To persist logs on the host, add `-v ./logs:/cardinal/logs` to the command.
 
 ### Quick start with Docker compose
 
@@ -56,7 +56,7 @@ $ docker compose run --rm funpay-cardinal
 ```bash
 $ docker compose up -d
 ```
-> **Tip**: To persist logs on the host, add `- ./logs:/opt/cardinal/logs` to the `volumes` section in `docker-compose.yml`.
+> **Tip**: To persist logs on the host, add `- ./logs:/cardinal/logs` to the `volumes` section in `docker-compose.yml`.
 
 ## Checking Logs and Status
 ```bash

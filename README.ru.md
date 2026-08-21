@@ -26,19 +26,19 @@
 **1. Интерактивный запуск (создание конфигов)**:
 ```bash
 $ docker run --rm -it --name funpay-cardinal-init \
-    -v /some/configs:/opt/cardinal/configs \
+    -v /some/configs:/cardinal/configs \
     shotplay/fp-cardinal 
 ```
 
 **2. Запуск в detach режиме (постоянный)**:
 ```bash
 $ docker run -d --name funpay-cardinal \
-    -v ./configs:/opt/cardinal/configs \
-    -v ./plugins:/opt/cardinal/plugins \
-    -v ./storage:/opt/cardinal/storage \
+    -v ./configs:/cardinal/configs \
+    -v ./plugins:/cardinal/plugins \
+    -v ./storage:/cardinal/storage \
     shotplay/fp-cardinal
 ```
-> **Примечание**: Чтобы сохранять логи на хосте, добавьте `-v ./logs:/opt/cardinal/logs` в команду.
+> **Примечание**: Чтобы сохранять логи на хосте, добавьте `-v ./logs:/cardinal/logs` в команду.
 
 ### Быстрый старт с Docker Compose
 
@@ -56,7 +56,7 @@ $ docker compose run --rm funpay-cardinal
 ```bash
 $ docker compose up -d
 ```
-> **Примечание**: Чтобы сохранять логи на хосте, добавьте `-v ./logs:/opt/cardinal/logs` в секцию `volumes` в файле `docker-compose.yml`.
+> **Примечание**: Чтобы сохранять логи на хосте, добавьте `-v ./logs:/cardinal/logs` в секцию `volumes` в файле `docker-compose.yml`.
 
 ## Проверка Логов и Статуса
 ```bash
