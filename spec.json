@@ -34,12 +34,12 @@
     }
   },
   "cardinal": {
-    "version": "0.1.17.7",
+    "version": "0.1.17.8",
     "source": {
       "github": {
         "owner": "sidor0912",
         "repo": "FunPayCardinal",
-        "rev": "8b52a855f242da854806ef09ab1691b53d5d20a9"
+        "rev": "9d5ce692574ce2705f31715ec916ebede5d44d4e"
       }
     }
   },
@@ -111,7 +111,7 @@
         "main.py"
       ],
       "labels": {
-        "org.opencontainers.image.version": "0.1.17.7"
+        "org.opencontainers.image.version": "0.1.17.8"
       }
     },
     "slim-bookworm": {
@@ -140,7 +140,7 @@
         "main.py"
       ],
       "labels": {
-        "org.opencontainers.image.version": "0.1.17.7"
+        "org.opencontainers.image.version": "0.1.17.8"
       }
     },
     "slim-trixie": {
@@ -171,7 +171,7 @@
         "main.py"
       ],
       "labels": {
-        "org.opencontainers.image.version": "0.1.17.7"
+        "org.opencontainers.image.version": "0.1.17.8"
       }
     },
     "distroless": {
@@ -218,7 +218,7 @@
         "main.py"
       ],
       "labels": {
-        "org.opencontainers.image.version": "0.1.17.7"
+        "org.opencontainers.image.version": "0.1.17.8"
       }
     }
   }
