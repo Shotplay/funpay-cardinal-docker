@@ -26,11 +26,11 @@ group "cross" {
 }
 
 variable "CARDINAL_VERSION" {
-  default = "0.1.17.13"
+  default = "0.1.17.12"
 }
 
 variable "CARDINAL_REVISION" {
-  default = "4e62af063fab4e9164b6a8bfdb2ac387f2b0a83f"
+  default = "e8ec552e7291331f7e0617e8d043f868d3975dd5"
 }
 
 variable "OCI_AUTHORS" {
@@ -59,7 +59,7 @@ target "alpine" {
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-alpine",
-    "docker.io/shotplay/fp-cardinal:0.1.17.13-alpine",
+    "docker.io/shotplay/fp-cardinal:0.1.17.12-alpine",
     "docker.io/shotplay/fp-cardinal:0.1.17-alpine",
     "docker.io/shotplay/fp-cardinal:0.1-alpine",
     "docker.io/shotplay/fp-cardinal:0-alpine",
@@ -92,7 +92,7 @@ target "distroless" {
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-distroless",
-    "docker.io/shotplay/fp-cardinal:0.1.17.13-distroless",
+    "docker.io/shotplay/fp-cardinal:0.1.17.12-distroless",
     "docker.io/shotplay/fp-cardinal:0.1.17-distroless",
     "docker.io/shotplay/fp-cardinal:0.1-distroless",
     "docker.io/shotplay/fp-cardinal:0-distroless",
@@ -125,7 +125,7 @@ target "slim-bookworm" {
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-slim-bookworm",
-    "docker.io/shotplay/fp-cardinal:0.1.17.13-slim-bookworm",
+    "docker.io/shotplay/fp-cardinal:0.1.17.12-slim-bookworm",
     "docker.io/shotplay/fp-cardinal:0.1.17-slim-bookworm",
     "docker.io/shotplay/fp-cardinal:0.1-slim-bookworm",
     "docker.io/shotplay/fp-cardinal:0-slim-bookworm",
@@ -159,7 +159,7 @@ target "slim-trixie" {
   tags = [
     "docker.io/shotplay/fp-cardinal:latest",
     "docker.io/shotplay/fp-cardinal:latest-slim-trixie",
-    "docker.io/shotplay/fp-cardinal:0.1.17.13-slim-trixie",
+    "docker.io/shotplay/fp-cardinal:0.1.17.12-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0.1.17-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0.1-slim-trixie",
     "docker.io/shotplay/fp-cardinal:0-slim-trixie",
