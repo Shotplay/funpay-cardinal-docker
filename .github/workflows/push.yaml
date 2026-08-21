@@ -6,6 +6,10 @@ on:
     types:
       - closed
 
+defaults:
+  run:
+    shell: nix develop .#ci --fallback --command bash -e {0}
+
 jobs:
   push:
     if: |
@@ -27,6 +31,12 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Get cardinal version
+        id: cardinal_version
+        run: |
+          CARDINAL_VERSION=$(jq -r '.cardinal.version' spec.json)
+          echo "version=$CARDINAL_VERSION" >> $GITHUB_OUTPUT
+
       - name: Login to Docker Hub
         uses: docker/login-action@v4
         with:
@@ -46,3 +56,4 @@ jobs:
         with:
           push: true
           targets: ${{ matrix.target }}-cross
+          files: version/${{ steps.cardinal_version.outputs.version }}/docker-bake.hcl

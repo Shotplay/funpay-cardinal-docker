@@ -55,7 +55,7 @@ variable "OCI_DESCRIPTION" {
 
 target "alpine" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.12/alpine"
+  context = "./alpine"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-alpine",
@@ -88,7 +88,7 @@ target "alpine" {
 
 target "distroless" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.12/distroless"
+  context = "./distroless"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-distroless",
@@ -121,7 +121,7 @@ target "distroless" {
 
 target "slim-bookworm" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.12/slim-bookworm"
+  context = "./slim-bookworm"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest-slim-bookworm",
@@ -154,7 +154,7 @@ target "slim-bookworm" {
 
 target "slim-trixie" {
   inherits = ["_attest"]
-  context = "./versions/0.1.17.12/slim-trixie"
+  context = "./slim-trixie"
   dockerfile = "Dockerfile"
   tags = [
     "docker.io/shotplay/fp-cardinal:latest",

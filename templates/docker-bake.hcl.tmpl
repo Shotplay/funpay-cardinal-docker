@@ -61,7 +61,7 @@ variable "OCI_DESCRIPTION" {
 
 target "{{ $key }}" {
   inherits = ["_attest"]
-  context = "./versions/{{ $.spec.cardinal.version }}/{{ $key }}"
+  context = "./{{ $key }}"
   dockerfile = "Dockerfile"
   tags = [
     {{- if gt (len $final.tags) 0 }}

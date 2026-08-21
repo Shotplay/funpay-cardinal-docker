@@ -6,16 +6,17 @@ cardinal_version_jq_filter := '
 | .cardinal.source.github.rev = $rev
 '
 
-update:
-  just update-bake
-  just update-dockerfile-target "alpine"
-  just update-dockerfile-target "distroless"
-  just update-dockerfile-target "slim-trixie"
-  just update-dockerfile-target "slim-bookworm"
-
 update-version version revision:
   just set-cardinal-version {{ version }} {{ revision }}
-  just update
+  just update-bake {{ version }}
+  just update-dockerfiles {{ version }}
+  cp spec.json versions/{{ version }}/spec.json
+
+update-dockerfiles version:
+  just update-dockerfile-target "{{ version }}" "alpine" 
+  just update-dockerfile-target "{{ version }}" "distroless" 
+  just update-dockerfile-target "{{ version }}" "slim-trixie" 
+  just update-dockerfile-target "{{ version }}" "slim-bookworm" 
 
 set-cardinal-version version revision:
   jq \
@@ -25,9 +26,17 @@ set-cardinal-version version revision:
     spec.json > spec.json.tmp
   mv spec.json.tmp spec.json
 
-update-dockerfile-target target:
+update-bake version:
+  gomplate \
+  -c spec=versions/{{ version }}/spec.json \
+  -f templates/docker-bake.hcl.tmpl \
+  -o versions/{{ version }}/docker-bake.hcl \
+  -t templates/macros/license.tmpl
+
+update-dockerfile-target version target:
   TARGET="{{ target }}" \
-  gomplate -c spec=spec.json \
+  gomplate \
+  -c spec=versions/{{ version }}/spec.json \
   -f templates/Dockerfile.tmpl \
   -o versions/{{ cardinal_version }}/{{ target }}/Dockerfile \
   -t templates/macros/build.tmpl \
@@ -35,8 +44,3 @@ update-dockerfile-target target:
   -t templates/macros/final.tmpl \
   -t templates/macros/license.tmpl
 
-update-bake:
-  gomplate -c spec=spec.json \
-  -f templates/docker-bake.hcl.tmpl \
-  -o docker-bake.hcl \
-  -t templates/macros/license.tmpl
