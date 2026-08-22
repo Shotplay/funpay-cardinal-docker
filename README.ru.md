@@ -26,7 +26,7 @@
 **1. Интерактивный запуск (создание конфигов)**:
 ```bash
 $ docker run --rm -it --name funpay-cardinal-init \
-    -v /some/configs:/cardinal/configs \
+    -v ./configs:/cardinal/configs \
     shotplay/fp-cardinal 
 ```
 
