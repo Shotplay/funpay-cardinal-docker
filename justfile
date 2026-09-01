@@ -4,7 +4,7 @@ JUST := `which just`
 JQ := `which jq`
 
 CARDINAL_VERSION := `{{JQ}} '.cardinal.version' spec.json`
-cardinal_version_jq_filter := '
+CARDINAL_VERSION_JQ_FILTER := '
 .cardinal.version = $ver
 | .cardinal.source.github.rev = $rev
 '
@@ -26,7 +26,7 @@ set-cardinal-version version revision:
   jq \
     --arg ver "{{ version }}" \
     --arg rev "{{ revision }}" \
-    '{{ cardinal_version_jq_filter }}' \
+    '{{ CARDINAL_VERSION_JQ_FILTER }}' \
     spec.json > spec.json.tmp
   mv spec.json.tmp spec.json
 
@@ -42,7 +42,7 @@ update-dockerfile-target version target:
   gomplate \
   -c spec=versions/{{ version }}/spec.json \
   -f templates/Dockerfile.tmpl \
-  -o versions/{{ cardinal_version }}/{{ target }}/Dockerfile \
+  -o versions/{{ CARDINAL_VERSION }}/{{ target }}/Dockerfile \
   -t templates/macros/build.tmpl \
   -t templates/macros/env.tmpl \
   -t templates/macros/final.tmpl \
