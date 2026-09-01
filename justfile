@@ -6,9 +6,6 @@ MKDIR := `which mkdir`
 CP := `which cp`
 ECHO := `which echo`
 GOMPLATE := `which gomplate`
-MV := `which mv`
-RM := `which rm`
-MKTEMP := `which mktemp`
 
 CARDINAL_VERSION_JQ_FILTER := '
 .cardinal.version = $ver
