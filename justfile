@@ -7,6 +7,7 @@ cardinal_version_jq_filter := '
 '
 
 update-version version revision:
+  mkdir -p versions/{{ version }}
   just set-cardinal-version {{ version }} {{ revision }}
   cp spec.json versions/{{ version }}/spec.json
   just update-bake {{ version }}
