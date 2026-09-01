@@ -1,6 +1,9 @@
 set lazy
 
-cardinal_version := `jq '.cardinal.version' spec.json`
+JUST := `which just`
+JQ := `which jq`
+
+CARDINAL_VERSION := `{{JQ}} '.cardinal.version' spec.json`
 cardinal_version_jq_filter := '
 .cardinal.version = $ver
 | .cardinal.source.github.rev = $rev

@@ -45,15 +45,14 @@ jobs:
         with:
           path: .cache/tags
           key: processed-tags-${{ hashFiles('spec.json') }}
-          restore-keys: |
-            processed-tags-
+          restore-keys: processed-tags-
 
       - name: Compare tags
         id: compare_tags
         run: |
           mkdir -p .cache/tags
 
-          PROCESSED_TAGS_FILE=".cache/tags/processed-tags-${{ hashFiles('spec.json') }}"
+          PROCESSED_TAGS_FILE=".cache/tags/processed-tags.txt"
           GET_TAGS="${{ steps.get_tags.outputs.tags }}"
 
           echo "GET_TAGS: $GET_TAGS"
