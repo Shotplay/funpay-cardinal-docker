@@ -8,9 +8,9 @@ cardinal_version_jq_filter := '
 
 update-version version revision:
   just set-cardinal-version {{ version }} {{ revision }}
+  cp spec.json versions/{{ version }}/spec.json
   just update-bake {{ version }}
   just update-dockerfiles {{ version }}
-  cp spec.json versions/{{ version }}/spec.json
 
 update-dockerfiles version:
   just update-dockerfile-target "{{ version }}" "alpine" 
