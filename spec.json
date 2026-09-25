@@ -34,12 +34,12 @@
     }
   },
   "cardinal": {
-    "version": "0.1.17.15",
+    "version": "0.1.17.14",
     "source": {
       "github": {
         "owner": "sidor0912",
         "repo": "FunPayCardinal",
-        "rev": "c09dd13be25072bb3d5cdbba33d1e0d70e477710"
+        "rev": "65f5f431e3a1d9843a40414ec81e55b44cb08736"
       }
     }
   },
